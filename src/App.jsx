@@ -7,6 +7,7 @@ import { useEffect } from "react";
 function App() {
   const { timer, setTimer, running, setRunning, edit, setEdit } = useTimer();
   const [editTableTimeString, setEditTableTimeString] = useState("");
+  const [isFirst, setIsFirst] = useState();
   const inputRef = useRef(null);
 
   const setCursorAtStart = () => {
@@ -29,6 +30,7 @@ function App() {
     if (!running && !edit) {
       setEdit(true);
       const timeString = getFormattedTime(timer);
+      setIsFirst(true);
       setEditTableTimeString(timeString);
     }
 
@@ -40,8 +42,30 @@ function App() {
   const handleChange = (e) => {
     let inputValue = e.target.value.replace(/:/g, "");
 
+    // if (isFirst) {
+    //   // const newString = editTableTimeString.split("");
+    //   const newNumber = inputValue[6];
+    //   if (newNumber === "0") {
+    //     setEditTableTimeString("00:00:00");
+    //   } else {
+    //     setEditTableTimeString(`00:00:0${newNumber}`);
+    //   }
+    //   setIsFirst(false);
+    // }
+    debugger;
+
     if (inputValue.length > 6) {
-      inputValue = inputValue.slice(-6);
+      if (isFirst) {
+        const newNumber = inputValue[6];
+        if (newNumber === "0") {
+          inputValue = "000000";
+        } else {
+          inputValue = `00000${newNumber}`;
+        }
+        setIsFirst(false);
+      } else {
+        inputValue = inputValue.slice(-6);
+      }
     } else {
       inputValue = inputValue.padStart(6, "0");
     }
@@ -82,7 +106,6 @@ function App() {
             borderRadius: "5px",
             padding: "4rem",
             boxSizing: "content-box",
-            // width: "30vw",
           }}
         >
           <Box
@@ -103,7 +126,7 @@ function App() {
                         ? `0${Math.floor(timer / 60) % 60}`
                         : Math.floor(timer / 60) % 60
                     }:`}
-                  {`${timer % 60 < 10 ? `${timer % 60}` : timer % 60}`}
+                  {`${timer % 60 < 10 ? `0${timer % 60}` : timer % 60}`}
                 </>
               ) : (
                 <TextField
