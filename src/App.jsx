@@ -192,7 +192,13 @@ function App() {
               </Button>
             )}
 
-            <Button variant="contained" onClick={() => setTimer(2 * 60)}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                setTimer(2 * 60);
+                setEdit(false);
+              }}
+            >
               RESTART
             </Button>
           </Stack>
