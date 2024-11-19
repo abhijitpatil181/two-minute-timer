@@ -42,18 +42,6 @@ function App() {
   const handleChange = (e) => {
     let inputValue = e.target.value.replace(/:/g, "");
 
-    // if (isFirst) {
-    //   // const newString = editTableTimeString.split("");
-    //   const newNumber = inputValue[6];
-    //   if (newNumber === "0") {
-    //     setEditTableTimeString("00:00:00");
-    //   } else {
-    //     setEditTableTimeString(`00:00:0${newNumber}`);
-    //   }
-    //   setIsFirst(false);
-    // }
-    debugger;
-
     if (inputValue.length > 6) {
       if (isFirst) {
         const newNumber = inputValue[6];
@@ -84,6 +72,29 @@ function App() {
       const totalSeconds = getTotalSeconds(editTableTimeString);
       setTimer(totalSeconds);
       setEdit(false);
+    }
+  };
+
+  const changeTimer = (label) => {
+    switch (label) {
+      case "30": {
+        const totalSecond = getTotalSeconds(editTableTimeString) + 30;
+        const newString = getFormattedTime(totalSecond);
+        setEditTableTimeString(newString);
+
+        break;
+      }
+
+      case "01": {
+        const totalSecond = getTotalSeconds(editTableTimeString) + 60;
+        const newString = getFormattedTime(totalSecond);
+        setEditTableTimeString(newString);
+
+        break;
+      }
+
+      default:
+        console.log("deafult added");
     }
   };
 
@@ -147,13 +158,13 @@ function App() {
                     border: "none",
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
-                        border: "none", // Remove the border from the fieldset
+                        border: "none",
                       },
                       "&:hover fieldset": {
-                        border: "none", // Prevent hover border
+                        border: "none",
                       },
                       "&.Mui-focused fieldset": {
-                        border: "none", // Prevent border when focused
+                        border: "none",
                       },
                     },
                   }}
@@ -161,6 +172,18 @@ function App() {
               )}
             </Typography>
           </Box>
+          {!running && edit && (
+            <>
+              <Stack flexDirection={"row"} columnGap={2}>
+                <Button variant="contained" onClick={() => changeTimer("30")}>
+                  +0:30
+                </Button>
+                <Button variant="contained" onClick={() => changeTimer("01")}>
+                  +1:00
+                </Button>
+              </Stack>
+            </>
+          )}
 
           <Stack flexDirection={"row"} columnGap={2}>
             {timer !== 0 && (
