@@ -1,8 +1,28 @@
-# React + Vite
+# Two-Minute Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple two-minute timer application built with React.js. Follow the instructions below to clone the repository, install dependencies, and run the application.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+
+Make sure you have the following installed on your system:
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [Yarn](https://yarnpkg.com/)
+
+### Clone the Repository
+
+# To clone the repository, use the following command:
+
+```bash
+git clone https://github.com/abhijitpatil181/two-minute-timer.git](https://github.com/abhijitpatil181/two-minute-timer.git
+```
+
+# Install Dependcies using
+
+Yarn
+
+# Start Locally using
+yarn dev
+
+
