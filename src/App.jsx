@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography, TextField } from "@mui/material";
-import useTimer from "./assets/hooks/useTimer";
+import useTimer from "./hooks/useTimer";
 import { useRef, useState } from "react";
-import { getFormattedTime, getTotalSeconds } from "./assets/utiils/helper";
+import { getFormattedTime, getTotalSeconds } from "./utiils/helper";
 import { useEffect } from "react";
 
 function App() {
